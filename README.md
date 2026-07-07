@@ -2,11 +2,24 @@
 
 A high-performance event registration mini-application built to demonstrate full-stack integration, responsive UI/UX, and dual-layer filtering strategies.
 
-## 🚀 Tech Stack
-* **Frontend:** Next.js 14 (App Router), React, Tailwind CSS, Lucide Icons
-* **Backend:** Next.js Route Handlers (API), Node.js
-* **Database:** MongoDB Atlas, Mongoose (ODM)
-* **Language:** TypeScript
+## 📸 Project Showcase
+
+| Interface | View |
+| :--- | :--- |
+| **Main Dashboard** | ![Dashboard Overview](emp1.png) |
+| **Event Catalog** | ![Event Cards](emp2.png) |
+| **Event Details** | ![Event Details](emp3.png) |
+| **Registration Form** | ![Registration](emp4.png) |
+| **System Admin Control** | ![Admin Console](emp5.png) |
+
+## 🚀 Key Technical Features
+* **Frontend:** Next.js 14+ (App Router), Tailwind CSS (v4), Lucide Icons
+* **Backend:** Next.js API Route Handlers
+* **Database:** MongoDB Atlas + Mongoose ODM
+* **Analytics:** Custom `trackEvent` engine logging user behavior (Views, Searches, Filters, Registrations) to the browser console.
+* **Architecture:** Supports dual-layer filtering (Client-side React State vs. Server-side API Queries) with a 400ms debounce hook.
+* **Security & Admin:** Secured Admin Console (Password: `admin123`) with CSV data export capability.
+
 
 ## ⚙️ Local Setup Instructions
 1. Clone the repository and navigate into the project folder.
@@ -39,5 +52,8 @@ To fulfill the analytics tracking requirement, I built a custom `trackEvent()` u
 * **TypeScript:** Strict interface typing across both Mongoose models and React components.
 
 ## 🐛 Debugging & Known Issues
-* **MongoDB Network Timeouts (SSL 80):** During development, strict college Wi-Fi firewalls blocked port 27017. *Fix:* Used a mobile hotspot and ensured `0.0.0.0/0` was whitelisted in MongoDB Atlas Network Access.
-* **Next.js Async Params:** Newer Next.js versions strictly require dynamic route `params` to be awaited as a Promise. *Fix:* Explicitly unwrapped `await params` in `[id]/route.ts` to prevent 500 compilation errors.
+* **PostCSS/Tailwind Build Error:** Encountered a configuration mismatch during Vercel deployment where Tailwind styles were not being injected. Resolved by migrating to the latest Tailwind v4 PostCSS integration (@tailwindcss/postcss) and updating global CSS import syntax.
+
+* **Next.js Async Params:** Faced an Error: Route used params.id crash. Debugged by unwrapping the params object as a Promise to align with Next.js 15+ architectural requirements.
+
+* **Environment Variable Configuration:** Initial database connectivity issues were resolved by strictly whitelisting the deployment IP and ensuring the MONGODB_URI environment variable was correctly injected via the Vercel Dashboard.
