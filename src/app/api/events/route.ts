@@ -43,3 +43,13 @@ export async function GET(request: Request) {
     }, { status: 500 });
   }
 }
+export async function POST(request: Request) {
+  try {
+    await connectDB();
+    const body = await request.json();
+    const newEvent = await Event.create(body);
+    return NextResponse.json({ success: true, data: newEvent }, { status: 201 });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+  }
+}
