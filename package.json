@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "autoprefixer": "^10.5.2",
     "lucide-react": "^1.23.0",
     "mongodb": "^7.4.0",
     "mongoose": "^9.7.4",
